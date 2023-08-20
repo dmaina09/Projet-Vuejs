@@ -1,0 +1,47 @@
+/* Conteneur de base */
+.container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Conteneur pour grand écran (lg) */
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Conteneur pour écran extra-large (xl) */
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Conteneur pour écran extra-extra-large (2xl) */
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Centrage horizontal */
+  .container.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
