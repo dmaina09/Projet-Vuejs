@@ -12,17 +12,28 @@
               Enhance Your<br />
               Music Experience
             </div>
-            <div class="dateline"></div>
+            <div class="dateOffre">
+              <ul class="dates">
+                <li
+                  class="dateline"
+                  v-for="(item, index) in datelines"
+                  :key="index"
+                >
+                  <span class="date-limite">{{ item.number }}</span>
+                  <span class="heure-limite">{{ item.text }}</span>
+                </li>
+              </ul>
+            </div>
             <div class="btn-buy">
               <router-link to="#" class="btnBuyNow">
-                <span>Buy Now</span>
+                <span>Buy Now !</span>
               </router-link>
             </div>
           </div>
         </div>
         <div class="cell small-12 medium-12 large-6">
           <div class="partie-droite">
-            <img src="@/assets/images/radio.png" />
+            <img src="@/assets/images/radio.png" class="image-radio" />
           </div>
         </div>
       </div>
@@ -34,6 +45,16 @@
 <script>
 export default {
   name: "SectionOffre",
+  data() {
+    return {
+      datelines: [
+        { id: 1, number: 23, text: "Hours" },
+        { id: 2, number: 5, text: "Days" },
+        { id: 3, number: 59, text: "Minutes" },
+        { id: 4, number: 35, text: "Secondes" },
+      ],
+    };
+  },
 };
 </script>
 
@@ -71,6 +92,41 @@ export default {
         text-align: start;
         padding-top: 30px;
       }
+      .dateOffre {
+        .dates {
+          display: flex;
+          text-align: start;
+          gap: 10px;
+          justify-content: flex-start;
+
+          padding: 0px;
+          .dateline {
+            align-items: center;
+            border-radius: 42px;
+            background: white;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            width: 30px;
+            height: 30px;
+            .date-limite {
+              font-family: Poppins;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 600;
+              line-height: 20px;
+            }
+            .heure-limite {
+              font-family: Poppins;
+              font-size: 11px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 18px;
+            }
+          }
+        }
+      }
       .btn-buy {
         padding-top: 30px;
         .btnBuyNow {
@@ -85,6 +141,11 @@ export default {
           cursor: pointer;
           text-decoration: none;
         }
+      }
+    }
+    .partie-droite {
+      .image-radio {
+        width: 100%;
       }
     }
   }

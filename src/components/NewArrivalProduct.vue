@@ -18,7 +18,7 @@
   <div class="NewProduct">
     <div class="playstation">
       <div class="imageUn">
-        <img :src="img" />
+        <!-- <img :src="img" /> -->
       </div>
       <div class="section-texte" :style="`top:${top}%`">
         <div class="nom-produit">{{ name }}</div>
@@ -45,15 +45,18 @@ export default {
 
 <style lang="scss" scoped>
 .NewProduct {
+  height: 100%;
   .playstation {
-    position: relative;
-    background: #000;
+    // position: relative;
 
+    background: url("@/assets/images/playstation.png"),
+      rgb(7, 6, 6) 50% / cover no-repeat;
+    height: 100%;
     color: #fff;
     padding: 30px;
     border-radius: 5px;
     .section-texte {
-      position: absolute;
+      // position: absolute;
       //   top: 61%;
       display: flex;
       flex-direction: column;
@@ -61,6 +64,7 @@ export default {
       align-items: flex-start;
       padding: 36px 0px 0px 0px;
       gap: 16px;
+      margin-top: -195px;
 
       .nom-produit {
         font-size: 25px;

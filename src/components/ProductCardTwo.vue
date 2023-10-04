@@ -2,8 +2,8 @@
   <div class="product-card">
     <div class="produits-soldes">
       <div class="produits">
-        <div class="pourcentage-solde" v-if="product.estEnSolde">
-          <span class="text">-{{ product.discountValue }}%</span>
+        <div class="pourcentage-solde" v-if="product.onSale">
+          <span class="text">-{{ product.promotion }}%</span>
         </div>
         <div class="favories">
           <button class="heart_btn">
@@ -52,16 +52,18 @@
           </button>
         </div>
       </div>
-      <div class="img1">
-        <img :src="product.img" alt="" />
-      </div>
 
+      <router-link :to="`/product/${product.slug}`">
+        <div class="img1">
+          <img :src="product.image_url" alt="" />
+        </div>
+      </router-link>
       <div class="button-card">
         <!-- Routage dynamique -->
-        <!-- <router-link :to="`/product/${product.name}`" class="buy-btn">
+        <!-- <router-link :to="`/product/${product.slug}`" class="buy-btn">
           <span>Add To Card</span>
         </router-link> -->
-        <button class="buy-btn" @click="addProduct(product)">
+        <button class="buy-btn" @click="addProduct({ product, quantity: 1 })">
           <span>Add To Card</span>
         </button>
       </div>
@@ -71,13 +73,13 @@
       <div class="product-name">
         <span>{{ product.name }}</span>
       </div>
-      <div class="prix-produit" :class="product.estEnSolde ? 'isSolde' : ''">
-        <div class="prix-solde" v-if="product.estEnSolde">
-          ${{ calculDiscountPrice(product.discountValue, product.prixNormal) }}
+      <div class="prix-produit" :class="product.onSale ? 'isSolde' : ''">
+        <div class="prix-solde" v-if="product.onSale">
+          ${{ calculDiscountPrice(product.price, product.price) }}
         </div>
-        <div class="prix-normal">${{ product.prixNormal }}</div>
+        <div class="prix-normal">{{ product.price }} FCFA</div>
       </div>
-      <div class="avis">
+      <!-- <div class="avis">
         <div class="etoile" v-for="i in product.rate" :key="i">
           <svg
             width="16"
@@ -93,39 +95,119 @@
           </svg>
         </div>
         <div class="nbr-avis">({{ product.rate }})</div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
-
-<script>
+  
+  <script>
 import { mapActions } from "vuex";
+
 export default {
   name: "ProductCard",
   props: {
     product: {
       type: Object,
       default: {
-        img: require("@/assets/images/manette.png"),
-        name: "HAVIT HV-G92 Gamepad",
-        estEnSolde: true,
-        discountValue: 20,
-        prixSolde: 120,
-        prixNormal: 160,
-        rate: 3,
+        _id: "64e0f021739dbefdb09e0182",
+        name: "RECHAUD + BARBECUE MOD AVANA",
+        externalId: 0,
+        description: "<h2>RECHAUD + BARBECUE MOD AVANA</h2>",
+        shortDescription: "RECHAUD + BARBECUE MOD AVANA",
+        slug: "rechaud-barbecue-mod-avana_ZuLNN5ejhr",
+        sku: "02285",
+        keywords: "test, test",
+        status: "ACTIVE",
+        brand: {
+          _id: "63fcae6a1436917d92faeaa0",
+          name: "CAC",
+          slug: "cac",
+          logo: {
+            _id: "63fcae691436917d92faea9a",
+          },
+          logoUrl: "https://apicac.intech.sn/storage/undefined",
+          logoUrlNoExt: "https://apicac.intech.sn/storage/undefined",
+          id: "63fcae6a1436917d92faeaa0",
+        },
+        categories: [
+          {
+            _id: "64029bddeb894f89c72cb1aa",
+            name: "Foker",
+            slug: "foker",
+          },
+          {
+            _id: "64029bddeb894f89c72cb1a1",
+            name: "CAC",
+            slug: "cac",
+          },
+          {
+            _id: "64029bddeb894f89c72cb1b0",
+            name: "Maison",
+            slug: "maison",
+          },
+        ],
+        tags: [],
+        images: [
+          {
+            _id: "64e0f01d739dbefdb09e017b",
+            contentType: "image/jpeg",
+            filename: "19-7-2023/rechaud-barbecue_y8xubgz_dmfmrw66f4xp0.jpg",
+            scope: "INTERNAL",
+            size: 199617,
+            createdAt: "2023-08-19T16:38:53.279Z",
+            updatedAt: "2023-08-19T16:38:53.279Z",
+            __v: 0,
+          },
+        ],
+        imagesOld: [],
+        details: [],
+        price: 25000,
+        buyWith: [],
+        variations: [],
+        composables: [],
+        quantityPerSale: 5,
+        attributes: [],
+        promotion: 0,
+        weight: "0",
+        tax: 0,
+        externalImages: [],
+        createdBy: "64e0f021739dbefdb09e0181",
+        inStock: true,
+        featured: false,
+        onSale: false,
+        reviewsAllowed: true,
+        purchasable: true,
+        createdAt: "2023-08-19T16:38:57.111Z",
+        updatedAt: "2023-08-19T16:38:57.111Z",
+        __v: 0,
+        term_values: [],
+        image_url:
+          "https://apicac.intech.sn/storage/19-7-2023/rechaud-barbecue_y8xubgz_dmfmrw66f4xp0.jpg",
+        images_url: [
+          "https://apicac.intech.sn/storage/19-7-2023/rechaud-barbecue_y8xubgz_dmfmrw66f4xp0.jpg",
+        ],
+        image_ext:
+          "https://apicac.intech.sn/storage/19-7-2023/rechaud-barbecue_y8xubgz_dmfmrw66f4xp0",
+        images_ext: [
+          "https://apicac.intech.sn/storage/19-7-2023/rechaud-barbecue_y8xubgz_dmfmrw66f4xp0",
+        ],
+        categoryLevel3: "Foker",
+        categoryLevel1: "Foker",
+        id: "64e0f021739dbefdb09e0182",
       },
     },
   },
   methods: {
     ...mapActions(["addProduct"]),
+
     calculDiscountPrice: (discountValue, prixNormal) => {
       return prixNormal - (prixNormal * discountValue) / 100;
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
+  
+  <style lang="scss" scoped>
 @import "@/assets/sass/_colors.scss";
 .product-card {
   margin-bottom: 30px;
@@ -139,6 +221,11 @@ export default {
     .img1 {
       padding-top: 20px;
       margin-bottom: -15px;
+      img {
+        width: 190px;
+        height: 190px;
+        object-fit: fill;
+      }
     }
     .produits {
       position: relative;
@@ -209,7 +296,7 @@ export default {
         color: #fff;
         background-color: #000;
         width: 100%;
-
+        cursor: pointer;
         text-decoration: none;
       }
     }
@@ -227,6 +314,11 @@ export default {
       font-style: normal;
       font-weight: 500;
       line-height: 24px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2 !important;
+      text-align: left;
     }
 
     .prix-produit {
@@ -288,3 +380,4 @@ export default {
   }
 }
 </style>
+  

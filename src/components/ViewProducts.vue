@@ -1,6 +1,6 @@
 <template>
   <div class="button-products" :style="`text-align:${position}`">
-    <router-link to="#" class="btn-view-all">
+    <router-link to="/products" class="btn-view-all">
       <span class="view-all-products">{{ title }}</span>
     </router-link>
   </div>

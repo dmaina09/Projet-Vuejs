@@ -14,7 +14,24 @@
               type="text"
               placeholder="Enter your email"
             />
-            <img src="@/assets/images/icon-send.png" />
+            <!-- <img src="@/assets/images/icon-send.png" /> -->
+            <div class="img-send">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M9.91199 11.9998H3.99999L2.02299 4.1348C2.01033 4.0891 2.00262 4.04216 1.99999 3.9948C1.97799 3.2738 2.77199 2.7738 3.45999 3.1038L22 11.9998L3.45999 20.8958C2.77999 21.2228 1.99599 20.7368 1.99999 20.0288C2.00201 19.9655 2.01313 19.9029 2.03299 19.8428L3.49999 14.9998"
+                  stroke="#FAFAFA"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
           </button>
         </div>
       </div>
@@ -64,6 +81,34 @@
         </div>
       </div>
     </div>
+
+    <div class="reserved">
+      <span class="img-C">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="19"
+          height="20"
+          viewBox="0 0 19 20"
+          fill="none"
+        >
+          <path
+            d="M9.49935 18.3334C14.1017 18.3334 17.8327 14.6025 17.8327 10.0001C17.8327 5.39771 14.1017 1.66675 9.49935 1.66675C4.89698 1.66675 1.16602 5.39771 1.16602 10.0001C1.16602 14.6025 4.89698 18.3334 9.49935 18.3334Z"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M11.9993 8.14823C11.9993 8.14823 10.9699 6.66675 9.25425 6.66675C7.53856 6.66675 6.16602 8.14823 6.16602 10.0001C6.16602 11.8519 7.53856 13.3334 9.25425 13.3334C10.9699 13.3334 11.9993 11.8519 11.9993 11.8519"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+      <span class="copy-right">Copyright Rimel 2022. All right reserved</span>
+    </div>
   </footer>
 </template>
 
@@ -80,7 +125,7 @@ export default {
 @import "@/assets/sass/_colors.scss";
 #footer {
   padding-top: 40px;
-  padding-bottom: 40px;
+  // padding-bottom: 40px;
   // display: flex;
   // flex-direction: column;
   // align-items: center;
@@ -146,8 +191,9 @@ export default {
           display: flex;
           align-items: center;
           border-radius: 4px;
-          gap: 8px;
+          // gap: 8px;
           background: #000;
+          padding: 8px 0px;
 
           ::-webkit-input-placeholder {
             font-family: Poppins;
@@ -164,6 +210,10 @@ export default {
             border: 0;
             outline: none;
             background: #000;
+            padding-left: 10px;
+          }
+          .img-send {
+            padding-right: 8px;
           }
         }
       }
@@ -267,6 +317,25 @@ export default {
       align-items: flex-start;
       flex-direction: column;
       // gap: 12px;
+    }
+  }
+  .reserved {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0.1;
+    // margin: 15px 0;
+    border-top: 0.5px solid #ffffff5c;
+    padding: 10px;
+
+    .copy-right {
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      color: #fff;
     }
   }
 }
