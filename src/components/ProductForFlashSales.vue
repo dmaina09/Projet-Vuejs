@@ -2,10 +2,13 @@
   <section id="product-for-flash-sales">
     <div class="grid-container">
       <div class="grid-x grid-margin-x">
-        <div class="cell small-6 medium-6 large-6">
-          <ProduitsTitles topTitle="Today's" mainTitle="Flash sales" />
+        <div class="cell small-10 medium-6 large-6">
+          <ProduitsTitles
+            topTitle="Today's"
+            :mainTitle="categoryProduct.title"
+          />
         </div>
-        <div class="cell small-6 medium-6 large-6">
+        <div class="cell small-2 medium-6 large-6">
           <ButtonSwipper />
         </div>
       </div>
@@ -25,10 +28,10 @@
           class="mySwiper"
         >
           <swiper-slide
-            v-for="productItem in allProducts"
+            v-for="productItem in categoryProduct.products"
             :key="productItem.id"
           >
-            <ProductCard :product="productItem" />
+            <ProductCardTwo :product="productItem" />
           </swiper-slide>
         </swiper>
       </div>
@@ -45,7 +48,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import ProduitsTitles from "@/components/ProduitsTitles.vue";
-import ProductCard from "@/components/ProductCard.vue";
+import ProductCardTwo from "@/components/ProductCardTwo.vue";
 import ViewProducts from "@/components/ViewProducts.vue";
 import ButtonSwipper from "@/components/ButtonSwipper.vue";
 export default {
@@ -54,9 +57,14 @@ export default {
     Swiper,
     SwiperSlide,
     ProduitsTitles,
-    ProductCard,
+    ProductCardTwo,
     ViewProducts,
     ButtonSwipper,
+  },
+  props: {
+    categoryProduct: {
+      type: Object,
+    },
   },
   setup() {
     return {
@@ -87,14 +95,16 @@ export default {
           prixNormal: 160,
           rate: 4,
         },
-        // {
-        //   id: 3,
-        //   img: require("@/assets/images/television.png"),
-        //   name: "IPS LCD Gaming Monitor",
-        //   estEnSolde: true,
-        //   prixSolde: 120,
-        //   prixNormal: 160,
-        // },
+        {
+          id: 3,
+          img: require("@/assets/images/television.png"),
+          name: "IPS LCD Gaming Monitor",
+          estEnSolde: true,
+          discountValue: 30,
+          prixSolde: 370,
+          prixNormal: 400,
+          rate: 5,
+        },
         // {
         //   id: 4,
         //   img: require("@/assets/images/chaise.png"),

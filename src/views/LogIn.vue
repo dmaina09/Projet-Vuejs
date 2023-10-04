@@ -1,11 +1,11 @@
 <template>
-  <section id="section-signup">
+  <section id="section-login">
     <div class="register">
       <div class="partie-image">
-        <img src="@/assets/images/img-login.png" class="img" alt="" />
+        <img src="@/assets/images/img-login.png" alt="" />
       </div>
-      <div class="create-account">
-        <h2 class="account">Create an account</h2>
+      <div class="partie-login">
+        <h2 class="exclusive">Log in to Exclusive</h2>
         <h3 class="details">Enter your details below</h3>
         <div class="errorMessage" v-if="messageError">
           <ul>
@@ -20,35 +20,11 @@
               <div class="cell small-12 medium-12 large-12">
                 <div class="input-container">
                   <input
-                    name="userFirstName"
-                    required
-                    type="text"
-                    v-model="userInfosSignup.firstName"
-                    placeholder="First Name"
-                  />
-                </div>
-              </div>
-              <div class="cell small-12 medium-12 large-12">
-                <div class="input-container">
-                  <input
-                    name="userLastName"
-                    required
-                    type="text"
-                    v-model="userInfosSignup.lastName"
-                    placeholder="Last Name"
-                  />
-                </div>
-              </div>
-              <!-- <span v-if="errors.name" class="erreur">{{ errors.name }}</span> -->
-
-              <div class="cell small-12 medium-12 large-12">
-                <div class="input-container">
-                  <input
                     required
                     name="userPseudo"
-                    type="email"
-                    v-model="userInfosSignup.email"
-                    placeholder="Email "
+                    type="text"
+                    v-model="userInfosLogin.pseudo"
+                    placeholder="Email or phone Number"
                   />
                 </div>
               </div>
@@ -58,7 +34,7 @@
                     required
                     name="userPassword"
                     :type="isPasswordShow ? 'text' : 'password'"
-                    v-model="userInfosSignup.password"
+                    v-model="userInfosLogin.password"
                     placeholder="Password"
                   />
                   <button
@@ -91,22 +67,17 @@
                 </div>
               </div>
               <div class="cell small-12 medium-12 large-12">
-                <div class="form-btn">
-                  <button type="submit" class="submit-button">
-                    Create Account
-                  </button>
-
-                  <button class="google">
-                    <img src="@/assets/images/Icon-Google.png" alt="" />
-                    Sign up with Google
-                  </button>
+                <div class="gestion-log">
+                  <button type="submit" class="btn-submit">Log In</button>
+                  <span>Forget Password?</span>
                 </div>
               </div>
-
               <div class="cell small-12 medium-12 large-12">
-                <div class="gestion-connexion">
-                  <span class="compte">Already have account ?</span>
-                  <router-link to="/login" class="log">Login</router-link>
+                <div class="return-signup">
+                  <span class="no-account">No Account ?</span>
+                  <router-link to="/sign-up" class="signup"
+                    >Sign Up</router-link
+                  >
                 </div>
               </div>
             </div>
@@ -118,62 +89,74 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-  name: "SignUP",
+  name: "LogIn",
+
   data() {
     return {
-      messageError: false,
-      isPasswordShow: false,
-      userInfosSignup: {
-        email: "priimost@gmail.com",
-        firstName: "priimost@gmail.com",
-        lastName: "priimost@gmail.com",
+      userInfosLogin: {
+        pseudo: "priimost@gmail.com",
         password: "priimost@gmail.com",
       },
+      messageError: false,
       allErrorMsg: [],
-      errors: {
-        name: "",
-      },
     };
   },
   methods: {
+    ...mapActions(["setUserInStore"]),
     async sendDatas() {
       this.messageError = false;
-      this.errors.name = "";
+      // if (
+      //   this.userInfosLogin.pseudo == "maimouna" &&
+      //   this.userInfosLogin.password == "m1289"
+      // ) {
+      //   // alert("connexion avec succes !");
 
-      // if (this.userInfosSignup.name.length < 2) {
-      //   this.errors.name = "le nom doit contenir entre 3 et 50 caracteres.";
+      //   this.$router.push("/");
+      // } else {
+      //   setTimeout(() => {
+      //     this.messageError = true;
+      //   }, 1500);
       // }
-
+      // axios
+      //   .post("https://apicac.intech.sn/api/v1/auth", {
+      //     email: this.userInfosLogin.pseudo,
+      //     password: this.userInfosLogin.password,
+      //   })
+      //   .then((response) => console.log(response));
       try {
-        const { data } = await this.$axios.post("/user", {
-          firstName: this.userInfosSignup.firstName,
-          lastName: this.userInfosSignup.lastName,
-          email: this.userInfosSignup.email,
-          password: this.userInfosSignup.password,
+        const { data } = await this.$axios.post("/auth", {
+          email: this.userInfosLogin.pseudo,
+          password: this.userInfosLogin.password,
         });
-        console.log(this.userInfosSignup);
+        if (data.statusCode == 200) {
+          console.log(data.data.access_token);
+          localStorage.setItem("token", data.data.access_token);
+          // localStorage.setItem("user", JSON.stringify(data.data.user));
+          // this.$store.dispatch("setUserInStore", data.data.user);
+          this.setUserInStore(data.data.user);
+          this.$router.push("/account");
+        }
+        console.log(data);
       } catch (error) {
-        this.allErrorMsg = error.response.data.message;
         this.messageError = true;
-      }
-      // alert("Inscription reussie");
-      // this.$router.push("/");
-    },
+        this.allErrorMsg = error.response.data.message;
 
-    validerNom() {},
+        console.log(error);
+      }
+    },
   },
 };
 </script>
 
-
-<style lang="scss" scoped>
+ <style lang="scss" scoped>
 @import "@/assets/sass/_colors.scss";
 @import "@/assets/sass/_breakspoints.scss";
-
-#section-signup {
+#section-login {
   margin-bottom: 140px;
   margin-top: 88px;
+
   .register {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -194,7 +177,7 @@ export default {
       gap: 17px;
     }
     .partie-image {
-      .img {
+      img {
         @include breakpoint(mobileonly) {
           display: none;
         }
@@ -203,17 +186,12 @@ export default {
         }
       }
     }
-    .create-account {
+    .partie-login {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      //  @include breakpoint(mobileonly) {
-      //    align-items: center;
-      //  }
-      // @include breakpoint(tablet) {
-      //    align-items: center;
-      // }
-      .account {
+      gap: 20px;
+      .exclusive {
         color: #000;
         font-size: 36px;
         font-style: normal;
@@ -228,18 +206,13 @@ export default {
         font-weight: 400;
         line-height: 24px;
       }
-
       .form_container {
         // display: flex;
         // flex-direction: column;
         // gap: 40px;
         width: 100%;
-        .erreur {
-          color: red;
-        }
         .input-container {
           border-bottom: 1px solid #16161657;
-
           &.pwd {
             display: flex;
             justify-content: center;
@@ -250,28 +223,32 @@ export default {
               background: none;
             }
           }
-
-          input {
-            border: 0;
-            width: 100%;
-            outline: none;
-            opacity: 0.5;
-            font-family: Poppins;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 24px;
-            color: #000;
-            align-items: flex-start;
-            display: flex;
-          }
         }
-        .form-btn {
-          .submit-button {
+        input {
+          border: 0;
+          width: 100%;
+          outline: none;
+          opacity: 0.5;
+          font-family: Poppins;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          color: #000;
+          align-items: flex-start;
+          display: flex;
+          // padding: 20px 50px;
+        }
+        .gestion-log {
+          display: flex;
+          align-items: center;
+          gap: 75px;
+          margin-top: 20px;
+          .btn-submit {
+            display: flex;
             background: $primary-color;
             color: #fff;
             text-align: center;
-            padding: 13px 50px;
             border: 0;
             border-radius: 4px;
             font-size: 16px;
@@ -279,46 +256,34 @@ export default {
             font-weight: 500;
             line-height: 24px;
             cursor: pointer;
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 20px;
+            padding: 10px 40px;
             transition: all 0.5ms ease-in-out;
 
             &:hover {
               background: $primary-color-700;
             }
           }
-          .google {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 13px 18px;
-            border: 1px solid #8080807a;
-            border-radius: 4px;
-            background: #fff;
-            cursor: pointer;
-            color: #000;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 22px;
-          }
-        }
-
-        .gestion-connexion {
-          text-align: center;
-          .compte {
+          span {
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
             line-height: 24px;
-            opacity: 0.7;
-            color: #000;
+            color: $primary-color;
+            cursor: pointer;
           }
-          .log {
-            text-decoration: none;
+        }
+        .return-signup {
+          text-align: left;
+          .no-account {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+            color: #000;
+            opacity: 0.5;
+            padding-right: 11px;
+          }
+          .signup {
             font-size: 16px;
             font-style: normal;
             font-weight: 500;
@@ -326,7 +291,8 @@ export default {
             color: #000;
             opacity: 0.7;
             border-bottom: 1px solid;
-            margin-left: 10px;
+            cursor: pointer;
+            text-decoration: none;
           }
         }
       }

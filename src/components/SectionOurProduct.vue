@@ -28,10 +28,10 @@
           class="mySwiper"
         >
           <swiper-slide
-            v-for="productItem in OurProducts"
+            v-for="productItem in desktopProduct.products"
             :key="productItem.id"
           >
-            <ProductCard :product="productItem" />
+            <ProductCardTwo :product="productItem" />
           </swiper-slide>
           >
         </swiper>
@@ -50,10 +50,10 @@
           class="mySwiper"
         >
           <swiper-slide
-            v-for="productItem in OurProductNew"
+            v-for="productItem in sportProduct.products"
             :key="productItem.id"
           >
-            <ProductCard :product="productItem" />
+            <ProductCardTwo :product="productItem" />
           </swiper-slide>
           >
         </swiper>
@@ -70,7 +70,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import ProduitsTitles from "@/components/ProduitsTitles.vue";
-import ProductCard from "@/components/ProductCard.vue";
+import ProductCardTwo from "@/components/ProductCardTwo.vue";
 import ViewProducts from "@/components/ViewProducts.vue";
 import ButtonSwipper from "@/components/ButtonSwipper.vue";
 export default {
@@ -79,7 +79,7 @@ export default {
     Swiper,
     SwiperSlide,
     ProduitsTitles,
-    ProductCard,
+    ProductCardTwo,
     ViewProducts,
     ButtonSwipper,
   },
@@ -91,6 +91,13 @@ export default {
     OurProductNew: {
       type: Array,
       default: [],
+    },
+
+    desktopProduct: {
+      type: Object,
+    },
+    sportProduct: {
+      type: Object,
     },
   },
   setup() {
