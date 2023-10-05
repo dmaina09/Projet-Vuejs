@@ -7,10 +7,11 @@
         <div class="route-link">
           <router-link to="/" class="menu">Home</router-link>
           <router-link to="/products" class="menu">Products</router-link>
-          <router-link to="/about" class="menu">About</router-link>
+          <router-link to="/about" class="menu">A propos</router-link>
           <router-link to="/contact" class="menu">Contact</router-link>
-          <router-link to="/sign-up" class="menu" v-if="!getLogginState"
-            >Sign Up</router-link
+
+          <router-link to="/login" class="menu" v-if="!getLogginState"
+            >Se connecter</router-link
           >
         </div>
       </div>
@@ -112,23 +113,17 @@
             <div class="menu-vertical">
               <router-link to="/" class="menu">Home</router-link>
               <router-link to="/products" class="menu">Products</router-link>
-              <router-link to="/about" class="menu">About</router-link>
+              <router-link to="/about" class="menu">A propos</router-link>
               <router-link to="/contact" class="menu">Contact</router-link>
-              <router-link to="/sign-up" class="menu">Sign Up</router-link>
+              <router-link to="/login" class="menu">Se connecter</router-link>
             </div>
           </div>
 
           <div class="categories">
             <span class="category">Categories</span>
-<<<<<<< HEAD
             <!-- <button class="dropbtn">
               <img src="@/assets/images/expand-arrow.png" />
             </button> -->
-=======
-            <button class="dropbtn">
-              <img src="@/assets/images/expand-arrow.png" />
-            </button>
->>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
             <div>
               <img src="" />
             </div>
@@ -139,17 +134,11 @@
                 :key="index"
                 :categories-products="categories"
               >
-<<<<<<< HEAD
                 <router-link
-                  :to="`/products/categorie/${categories.name}`"
+                  :to="`/products/categorie/${categories.slug}`"
                   class="exclusivite_menuName"
                   >{{ categories.name }}</router-link
                 >
-=======
-                <router-link to="#" class="exclusivite_menuName">{{
-                  categories.name
-                }}</router-link>
->>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
               </li>
             </ul>
           </div>

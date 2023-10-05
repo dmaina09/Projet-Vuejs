@@ -70,11 +70,7 @@ const routes = [
 
     },
     {
-<<<<<<< HEAD
         path: "/products/categorie/:categoryName",
-=======
-        path: "/productsbycategories/",
->>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
         name: 'ProductsByCategories',
         component: ProductsByCategories
 

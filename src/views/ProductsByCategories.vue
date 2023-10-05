@@ -1,11 +1,11 @@
 <template>
-  <section id="products">
+  <section id="productsByCatégory">
     <div class="grid-container">
       <div class="grid-x grid-margin-x grid margin-y">
         <div class="cell small-12 medium-12 large-12">
           <ProduitsTitles
             topTitle="Nos Produits"
-            mainTitle="Exploirez nos  produits"
+            :mainTitle="`Exploirez nos produits ${$route.params.categoryName}`"
           />
         </div>
         <div class="cell small-12 medium-12 large-12">
@@ -41,7 +41,6 @@ export default {
   },
 
   methods: {
-<<<<<<< HEAD
     // async getAllProducts() {
     //   try {
     //     const { data } = await this.$axios.get("/product");
@@ -54,13 +53,8 @@ export default {
     async getAllProductsByCategory() {
       try {
         const { data } = await this.$axios.get(
-          "/product/category?" + this.$route.params.categoryName
+          "product?category=" + this.$route.params.categoryName
         );
-=======
-    async getAllProducts() {
-      try {
-        const { data } = await this.$axios.get("/product");
->>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
         console.log(data);
         this.allProducts = data.data.products;
       } catch (error) {
@@ -69,11 +63,13 @@ export default {
     },
   },
   created() {
-<<<<<<< HEAD
     this.getAllProductsByCategory();
-=======
-    this.getAllProducts();
->>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
   },
 };
 </script>
+
+<style lang="scss">
+#productsByCatégory{
+  min-height: 100vh;
+}
+</style>

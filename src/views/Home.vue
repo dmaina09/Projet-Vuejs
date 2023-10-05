@@ -11,7 +11,7 @@
               :categories-products="categories"
             >
               <router-link
-                :to="`/products/categories/${categories.slug}`"
+                :to="`/products/categorie/${categories.slug}`"
                 class="exclusivite_menuName"
                 >{{ categories.name }}</router-link
               >
@@ -54,27 +54,29 @@
       <div class="cell small-12 medium-12 large-9">
         <section id="sliders">
           <div class="swiper">
-            <swiper
-              :spaceBetween="30"
-              :centeredSlides="true"
-              :pagination="{
-                clickable: true,
-              }"
-              :autoplay="true"
-              :navigation="mainHeroOptions.navigation"
-              :modules="modules"
-              class="mySwiper"
-            >
-              <swiper-slide
-                v-for="(banners, index) in banner"
-                :key="index"
-                :banner="banner"
+            
+              <swiper
+                :spaceBetween="30"
+                :centeredSlides="true"
+                :pagination="{
+                  clickable: true,
+                }"
+                :autoplay="true"
+                :navigation="mainHeroOptions.navigation"
+                :modules="modules"
+                class="mySwiper"
               >
-                <div class="partie-deux">
-                  <img :src="banners.image_url" />
-                </div>
-              </swiper-slide>
-            </swiper>
+                <swiper-slide
+                  v-for="(banners, index) in banner"
+                  :key="index"
+                  :banner="banner"
+                >
+                  <div class="partie-deux">
+                    <img :src="banners.image_url" />
+                  </div>
+                </swiper-slide>
+              </swiper>
+            
           </div>
         </section>
       </div>
@@ -116,8 +118,6 @@
     <FullService />
   </section>
 </template>
-
-
 
 <script>
 import { onMounted } from "vue";
@@ -418,7 +418,7 @@ export default {
     },
     async getBanner() {
       try {
-        const { data } = await this.$axios.get("/banner");
+        const { data } = await this.$axios.get("/banner?type=BIG");
         this.banner = data.data;
         //console.log(data);
       } catch (error) {
@@ -428,7 +428,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="scss" scoped>
 @import "@/assets/sass/container.scss";
