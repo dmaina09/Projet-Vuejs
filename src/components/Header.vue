@@ -386,7 +386,7 @@ header {
         border: 0;
         cursor: pointer;
         position: absolute;
-        top: 20px;
+        top: 38px;
 
         &:hover {
           border-radius: 50%;
@@ -442,6 +442,30 @@ header {
             flex-direction: column;
             align-items: flex-start;
             padding-left: 30px;
+            margin-top: 10px;
+
+            .menu {
+              color: #000;
+              text-align: center;
+              font-family: Poppins;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px;
+              text-decoration: none;
+              padding: 8px;
+
+              &:hover {
+                background: $primary-color-300;
+                color: #fff;
+                border-radius: 4px;
+              }
+              &:focus {
+                background: $primary-color-400;
+                color: #fff;
+                border-radius: 4px;
+              }
+            }
           }
         }
         .categories {

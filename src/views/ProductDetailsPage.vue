@@ -66,14 +66,10 @@
               </div>
 
               <div class="cell small-12 medium-12 large-12">
-                <div class="description">
-                  {{ currentProduct.shortDescription }}
-                  <!-- <p>
-                     PlayStation 5 Controller Skin High quality vinyl with air
-                    channel adhesive for easy bubble free install & mess free
-                    removal Pressure sensitive.
-                  </p> -->
-                </div>
+                <div
+                  class="description"
+                  v-html="currentProduct.shortDescription"
+                ></div>
                 <hr />
               </div>
 
@@ -201,9 +197,14 @@
                     </div>
                   </div> -->
                   <div>
-                    <button class="btn-buy">Buy Now</button>
+                    <button
+                      class="btn-buy"
+                      @click="addProduct({ product, quantity: 1 })"
+                    >
+                      Buy Now
+                    </button>
                   </div>
-                  <div class="wishlist">
+                  <!-- <div class="wishlist">
                     <svg
                       width="60"
                       height="60"
@@ -219,7 +220,7 @@
                         stroke-linejoin="round"
                       />
                     </svg>
-                  </div>
+                  </div> -->
                 </div>
               </div>
 
@@ -357,6 +358,7 @@ import ProductForFlashSales from "@/components/ProductForFlashSales.vue";
 import ProduitsTitles from "@/components/ProduitsTitles.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import RelatedItem from "@/components/RelatedItem.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "ProductDetailsPage",
@@ -450,6 +452,7 @@ export default {
       console.log(urlImage);
       this.isImageSelected = urlImage;
     },
+    ...mapActions(["addProduct"]),
   },
   created() {
     this.getSingleProduct();
