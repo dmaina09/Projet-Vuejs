@@ -120,9 +120,9 @@
 
           <div class="categories">
             <span class="category">Categories</span>
-            <button class="dropbtn">
+            <!-- <button class="dropbtn">
               <img src="@/assets/images/expand-arrow.png" />
-            </button>
+            </button> -->
             <div>
               <img src="" />
             </div>
@@ -133,9 +133,11 @@
                 :key="index"
                 :categories-products="categories"
               >
-                <router-link to="#" class="exclusivite_menuName">{{
-                  categories.name
-                }}</router-link>
+                <router-link
+                  :to="`/products/categorie/${categories.name}`"
+                  class="exclusivite_menuName"
+                  >{{ categories.name }}</router-link
+                >
               </li>
             </ul>
           </div>

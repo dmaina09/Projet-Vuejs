@@ -41,9 +41,20 @@ export default {
   },
 
   methods: {
-    async getAllProducts() {
+    // async getAllProducts() {
+    //   try {
+    //     const { data } = await this.$axios.get("/product");
+    //     console.log(data);
+    //     this.allProducts = data.data.products;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
+    async getAllProductsByCategory() {
       try {
-        const { data } = await this.$axios.get("/product");
+        const { data } = await this.$axios.get(
+          "/product/category?" + this.$route.params.categoryName
+        );
         console.log(data);
         this.allProducts = data.data.products;
       } catch (error) {
@@ -52,7 +63,7 @@ export default {
     },
   },
   created() {
-    this.getAllProducts();
+    this.getAllProductsByCategory();
   },
 };
 </script>

@@ -70,7 +70,7 @@ const routes = [
 
     },
     {
-        path: "/productsbycategories/",
+        path: "/products/categorie/:categoryName",
         name: 'ProductsByCategories',
         component: ProductsByCategories
 
