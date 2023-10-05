@@ -5,8 +5,8 @@
         <router-link to="/" id="Exclusive">Exclusive</router-link>
 
         <div class="route-link">
-          <router-link to="/" class="menu">Home</router-link>
-          <router-link to="/products" class="menu">Products</router-link>
+          <router-link to="/" class="menu">Accueil</router-link>
+          <router-link to="/products" class="menu">Produits</router-link>
           <router-link to="/about" class="menu">A propos</router-link>
           <router-link to="/contact" class="menu">Contact</router-link>
 
@@ -16,12 +16,12 @@
         </div>
       </div>
       <div class="Recherche">
-        <button id="btn-recherche">
+        <!-- <button id="btn-recherche">
           <input type="text" placeholder="What are you looking for?" />
           <img src="@/assets/images/Button-recherche.svg" alt="" />
-        </button>
+        </button> -->
         <div class="Cart1">
-          <div class="likes">
+          <!-- <div class="likes">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="32"
@@ -37,7 +37,7 @@
                 stroke-linejoin="round"
               />
             </svg>
-          </div>
+          </div> -->
           <div class="panier">
             <router-link to="/cart">
               <img src="@/assets/images/Cart1.svg" alt="" />
@@ -253,6 +253,7 @@ header {
     .barre-menu {
       display: flex;
       gap: 190px;
+      align-items: center;
       @include breakpoint(tablet) {
         display: flex;
         gap: 15px;

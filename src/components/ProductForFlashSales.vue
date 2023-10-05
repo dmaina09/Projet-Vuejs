@@ -4,7 +4,7 @@
       <div class="grid-x grid-margin-x">
         <div class="cell small-10 medium-6 large-6">
           <ProduitsTitles
-            topTitle="Today's"
+            topTitle="Aujourd'hui"
             :mainTitle="categoryProduct.title"
           />
         </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <ViewProducts position="center" title="View All Products" />
+    <ViewProducts position="center" title="Voir tous les produits" />
   </section>
 </template>
 

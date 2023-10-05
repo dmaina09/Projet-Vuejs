@@ -199,7 +199,9 @@
                   <div>
                     <button
                       class="btn-buy"
-                      @click="addProduct({ product, quantity: 1 })"
+                      @click="
+                        addProduct({ product: currentProduct, quantity: 1 })
+                      "
                     >
                       Buy Now
                     </button>
