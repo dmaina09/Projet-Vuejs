@@ -41,6 +41,7 @@ export default {
   },
 
   methods: {
+<<<<<<< HEAD
     // async getAllProducts() {
     //   try {
     //     const { data } = await this.$axios.get("/product");
@@ -55,6 +56,11 @@ export default {
         const { data } = await this.$axios.get(
           "/product/category?" + this.$route.params.categoryName
         );
+=======
+    async getAllProducts() {
+      try {
+        const { data } = await this.$axios.get("/product");
+>>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
         console.log(data);
         this.allProducts = data.data.products;
       } catch (error) {
@@ -63,7 +69,11 @@ export default {
     },
   },
   created() {
+<<<<<<< HEAD
     this.getAllProductsByCategory();
+=======
+    this.getAllProducts();
+>>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
   },
 };
 </script>

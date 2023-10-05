@@ -120,9 +120,15 @@
 
           <div class="categories">
             <span class="category">Categories</span>
+<<<<<<< HEAD
             <!-- <button class="dropbtn">
               <img src="@/assets/images/expand-arrow.png" />
             </button> -->
+=======
+            <button class="dropbtn">
+              <img src="@/assets/images/expand-arrow.png" />
+            </button>
+>>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
             <div>
               <img src="" />
             </div>
@@ -133,11 +139,17 @@
                 :key="index"
                 :categories-products="categories"
               >
+<<<<<<< HEAD
                 <router-link
                   :to="`/products/categorie/${categories.name}`"
                   class="exclusivite_menuName"
                   >{{ categories.name }}</router-link
                 >
+=======
+                <router-link to="#" class="exclusivite_menuName">{{
+                  categories.name
+                }}</router-link>
+>>>>>>> 8a80a23a9a79a128535be62930c0028b7c0f366d
               </li>
             </ul>
           </div>
